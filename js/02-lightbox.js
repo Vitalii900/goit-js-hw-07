@@ -10,7 +10,7 @@ function createImages(items) {
     .map(
       item =>
         `<a class="gallery__item" href="${item.original}">
-            <img class="gallery__image" src="${item.preview}" alt="${item.description}" title="${item.description}" />
+            <img class="gallery__image" src="${item.preview}" alt="${item.description}" />
         </a>`
     )
     .join('');
@@ -21,18 +21,22 @@ const addImagesToHtml = createImages(galleryItems);
 
 galleryRef.innerHTML = addImagesToHtml;
 
-galleryRef.addEventListener('click', openModal);
+new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+});
 
-function openModal(event) {
-  event.preventDefault();
+// galleryRef.addEventListener('click', openModal);
 
-  if (event.target.nodeName !== 'IMG') {
-    return;
-  }
+// function openModal(event) {
+//   event.preventDefault();
 
-  // console.log(event.target.src);
+//   if (event.target.nodeName !== 'IMG') {
+//     return;
+//   }
 
-  new SimpleLightbox('.gallery a', {
-    // captionsData: alt,
-  });
-}
+//   // console.log(event.target.src);
+
+//   new SimpleLightbox('.gallery a', {
+//     captionsData: 'alt',
+//   });
+// }

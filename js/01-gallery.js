@@ -43,11 +43,15 @@ function openModal(event) {
 
   instance.show();
 
-  galleryRef.addEventListener('keyup', e => {
-    if (e.code === 'Escape') {
+  function closeModal(event) {
+    if (event.code === 'Escape') {
       instance.close();
     }
-  });
+    // console.log(event.code);
+    galleryRef.removeEventListener('keyup', closeModal);
+  }
+
+  galleryRef.addEventListener('keyup', closeModal);
 
   // console.log(event.target.dataset.source);
 }
